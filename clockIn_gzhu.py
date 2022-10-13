@@ -17,7 +17,7 @@ class clockIn():
     def __init__(self):
         self.xuhao = str(os.environ['XUHAO'])
         self.mima = str(os.environ['MIMA'])
-        self.pushplus = str(os.environ['PUSHPLUS'])
+        # self.pushplus = str(os.environ['PUSHPLUS'])
 
         options = Options()
         optionsList = [
@@ -221,26 +221,26 @@ class clockIn():
             logger.error("健康打卡失败")
             self.fail = True
 
-    def notify(self):
-        """通知健康打卡成功与失败
-        """
-        if not self.pushplus:
-            if self.fail:
-                sys.exit("健康打卡失败")
-            else:
-                sys.exit()
-        else:
-            if self.fail:
-                title = content = "健康打卡失败"
-                logger.info("推送健康打卡失败的消息")
-            else:
-                title = content = "健康打卡成功"
-                logger.info("推送健康打卡成功的消息")
+#     def notify(self):
+#         """通知健康打卡成功与失败
+#         """
+#         if not self.pushplus:
+#             if self.fail:
+#                 sys.exit("健康打卡失败")
+#             else:
+#                 sys.exit()
+#         else:
+#             if self.fail:
+#                 title = content = "健康打卡失败"
+#                 logger.info("推送健康打卡失败的消息")
+#             else:
+#                 title = content = "健康打卡成功"
+#                 logger.info("推送健康打卡成功的消息")
 
-        if self.pushplus:
-            data = {"token": self.pushplus, "title": title, "content": content}
-            url = "http://www.pushplus.plus/send/"
-            logger.info(requests.post(url, data=data).text)
+#         if self.pushplus:
+#             data = {"token": self.pushplus, "title": title, "content": content}
+#             url = "http://www.pushplus.plus/send/"
+#             logger.info(requests.post(url, data=data).text)
 
 
 if __name__ == "__main__":
